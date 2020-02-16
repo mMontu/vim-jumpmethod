@@ -1,5 +1,12 @@
 # vim-jumpmethod
-Add better `[[`, `]]`, `]m`, `[m` support for more languages
+Add better `[[`, `]]`, `]m`, `[m` support for C++, C# and java
+
+# Installation
+
+* If using [vim-plug](https://github.com/junegunn/vim-plug), add the following line to your .vimrc file:
+`Plug 'RobertCWebb/vim-jumpmethod'`.  Then run vim and use `:PlugInstall`
+
+* Otherwise, copy the files into the matching subfolders in your vimfiles folder
 
 # About
 
