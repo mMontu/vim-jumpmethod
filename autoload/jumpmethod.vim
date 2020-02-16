@@ -1,6 +1,8 @@
 " Source: https://stackoverflow.com/a/6855438/79125
 " TODO:
 " * Extract keywords for better language support.
+"
+" Modified by Robert Webb 17 Feb 2020 to fix various issues, see README.md
 
 " Skip back over comment lines and blank lines
 function! jumpmethod#SkipBackOverComments(current_line)

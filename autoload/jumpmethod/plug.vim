@@ -1,4 +1,6 @@
 " Source: https://stackoverflow.com/a/6855438/79125
+"
+" Modified by Robert Webb 17 Feb 2020 to add [[ and ]] mappings, see README.md
 
 function! jumpmethod#plug#setup_plug()
     nnoremap <Plug>(jumpmethod-section-tostart-fwd)  :<c-u>call jumpmethod#jump('{', 'W',  'n', 1)<cr>
