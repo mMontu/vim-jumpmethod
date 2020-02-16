@@ -11,9 +11,9 @@ It also uses [bybor answer](https://stackoverflow.com/a/25521838/79125) to use
 OmniSharp support, if available.
 
 
-Turned into a plugin by @idbrii
+Turned into a plugin by [idbrii](https://github.com/idbrii/vim-jumpmethod)
 
-Modified by @RobertCWebb in the following ways:
+Modified by [RobertCWebb](https://github.com/RobertCWebb/vim-jumpmethod) in the following ways:
 
 * Added Test.cs as a C# file to test on.  Fixes listed below reference it
 * Fixed: In Func1() there were false positives where `if` or `using` statements span multiple lines
