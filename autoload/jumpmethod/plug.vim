@@ -12,19 +12,19 @@ function! jumpmethod#plug#setup_plug()
     nnoremap <Plug>(jumpmethod-curly-toend-fwd)     :<c-u>call jumpmethod#jump('}', 'W',  'n', 0)<cr>
     nnoremap <Plug>(jumpmethod-curly-toend-back)    :<c-u>call jumpmethod#jump('}', 'Wb', 'n', 0)<cr>
 
-    xnoremap <Plug>(jumpmethod-section-tostart-fwd)  :<c-u>call jumpmethod#jump('{', 'W',  'n', 1)<cr>
-    xnoremap <Plug>(jumpmethod-section-tostart-back) :<c-u>call jumpmethod#jump('{', 'Wb', 'n', 1)<cr>
-    xnoremap <Plug>(jumpmethod-section-toend-fwd)    :<c-u>call jumpmethod#jump('}', 'W',  'n', 1)<cr>
-    xnoremap <Plug>(jumpmethod-section-toend-back)   :<c-u>call jumpmethod#jump('}', 'Wb', 'n', 1)<cr>
+    xnoremap <Plug>(jumpmethod-section-tostart-fwd)  :<c-u>call jumpmethod#jump('{', 'W',  'v', 1)<cr>
+    xnoremap <Plug>(jumpmethod-section-tostart-back) :<c-u>call jumpmethod#jump('{', 'Wb', 'v', 1)<cr>
+    xnoremap <Plug>(jumpmethod-section-toend-fwd)    :<c-u>call jumpmethod#jump('}', 'W',  'v', 1)<cr>
+    xnoremap <Plug>(jumpmethod-section-toend-back)   :<c-u>call jumpmethod#jump('}', 'Wb', 'v', 1)<cr>
     xnoremap <Plug>(jumpmethod-curly-tostart-fwd)   :<c-u>call jumpmethod#jump('{', 'W',  'v', 0)<cr>
     xnoremap <Plug>(jumpmethod-curly-tostart-back)  :<c-u>call jumpmethod#jump('{', 'Wb', 'v', 0)<cr>
     xnoremap <Plug>(jumpmethod-curly-toend-fwd)     :<c-u>call jumpmethod#jump('}', 'W',  'v', 0)<cr>
     xnoremap <Plug>(jumpmethod-curly-toend-back)    :<c-u>call jumpmethod#jump('}', 'Wb', 'v', 0)<cr>
 
-    onoremap <Plug>(jumpmethod-section-tostart-fwd)  :<c-u>call jumpmethod#jump('{', 'W',  'n', 1)<cr>
-    onoremap <Plug>(jumpmethod-section-tostart-back) :<c-u>call jumpmethod#jump('{', 'Wb', 'n', 1)<cr>
-    onoremap <Plug>(jumpmethod-section-toend-fwd)    :<c-u>call jumpmethod#jump('}', 'W',  'n', 1)<cr>
-    onoremap <Plug>(jumpmethod-section-toend-back)   :<c-u>call jumpmethod#jump('}', 'Wb', 'n', 1)<cr>
+    onoremap <Plug>(jumpmethod-section-tostart-fwd)  :<c-u>call jumpmethod#jump('{', 'W',  'o', 1)<cr>
+    onoremap <Plug>(jumpmethod-section-tostart-back) :<c-u>call jumpmethod#jump('{', 'Wb', 'o', 1)<cr>
+    onoremap <Plug>(jumpmethod-section-toend-fwd)    :<c-u>call jumpmethod#jump('}', 'W',  'o', 1)<cr>
+    onoremap <Plug>(jumpmethod-section-toend-back)   :<c-u>call jumpmethod#jump('}', 'Wb', 'o', 1)<cr>
     onoremap <Plug>(jumpmethod-curly-tostart-fwd)   :<c-u>call jumpmethod#jump('{', 'W',  'o', 0)<cr>
     onoremap <Plug>(jumpmethod-curly-tostart-back)  :<c-u>call jumpmethod#jump('{', 'Wb', 'o', 0)<cr>
     onoremap <Plug>(jumpmethod-curly-toend-fwd)     :<c-u>call jumpmethod#jump('}', 'W',  'o', 0)<cr>
