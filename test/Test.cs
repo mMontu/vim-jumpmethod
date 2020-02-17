@@ -30,7 +30,7 @@ namespace NameyMcNamespace
 			blah;
 		}
 
-		void Func1()			// Stop here
+		new void Func1()		// Stop here, allow "new" keyword
 		{
 			if (ok &&
 				IsOK())			// Don't stop here
@@ -73,6 +73,18 @@ namespace NameyMcNamespace
 			{
 				blah;
 			}
+
+			Type blah = new Type	// Don't stop at object initialisers
+			{
+				width = _width,
+				height = _height,
+			};
+
+			Type blah = new Type()	// Don't stop at object initialisers
+			{
+				width = _width,
+				height = _height,
+			};
 
 			using (a =
 				   blah())			// Don't stop here

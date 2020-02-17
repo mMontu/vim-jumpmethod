@@ -1,8 +1,8 @@
-" Source: https://stackoverflow.com/a/6855438/79125
+" vim:et
+"
+" Original source: https://stackoverflow.com/a/6855438/79125
 " TODO:
 " * Extract keywords for better language support.
-"
-" Modified by Robert Webb 17 Feb 2020 to fix various issues, see README.md
 
 " Skip back over comment lines and blank lines
 function! jumpmethod#SkipBackOverComments(current_line)
@@ -78,8 +78,8 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
     let text = getline(current_line)
 
     if (current_line == openingBracePos[1])
-	" Still on original line, ignore everything after opening brace
-	let text = strpart(text, 0, col - 1)
+        " Still on original line, ignore everything after opening brace
+        let text = strpart(text, 0, col - 1)
     endif
 
     " Strip trailing comment
@@ -113,7 +113,8 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
       endif
 
       if text =~ '\(\k\|>\)\s*$' &&
-            \ text !~ '\<\(for\|foreach\|if\|while\|switch\|using\|catch\)\>\s*$'
+            \ text !~ '\<\(for\|foreach\|if\|while\|switch\|using\|catch\)\>\s*$' &&
+            \ text !~ '[=(,]\s*new'
         " it's probably a function call
         let found = 1
 
@@ -124,7 +125,8 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
     elseif (a:includeClassesAndProperties)
       " No closing ')'.  Maybe worth stopping here anyway if it's a class
       " definition or property.
-      if text !~ '\(\<\(else\|try\|finally\|get\|set\)\>\|=>\|;\|{\|}\)\s*{\?\s*$'
+      if text !~ '\(\<\(else\|try\|finally\|get\|set\)\>\|=>\|;\|{\|}\)\s*{\?\s*$' &&
+            \ text !~ '[=(,]\s*new'
         " Probably something of interest
         let found = 1
 
