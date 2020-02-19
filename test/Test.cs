@@ -86,6 +86,12 @@ namespace NameyMcNamespace
 				height = _height,
 			};
 
+			string[] names =		// Don't stop here
+			{
+				"Bob",
+				"Blah",
+			};
+
 			using (a =
 				   blah())			// Don't stop here
 			{

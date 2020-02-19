@@ -125,7 +125,7 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
     elseif (a:includeClassesAndProperties)
       " No closing ')'.  Maybe worth stopping here anyway if it's a class
       " definition or property.
-      if text !~ '\(\<\(else\|try\|finally\|get\|set\)\>\|=>\|;\|{\|}\)\s*{\?\s*$' &&
+      if text !~ '\(\<\(else\|try\|finally\|get\|set\)\>\|=\|=>\|;\|{\|}\)\s*{\?\s*$' &&
             \ text !~ '[=(,]\s*new'
         " Probably something of interest
         let found = 1
