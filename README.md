@@ -1,5 +1,5 @@
 # vim-jumpmethod
-Add better `[[`, `]]`, `]m`, `[m`, gd, gD support for C++, C# and java
+Add better `[[`, `]]`, `]m`, `[m`, `gd`, `gD` support for C++, C# and java
 
 # Installation
 
