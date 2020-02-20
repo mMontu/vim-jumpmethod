@@ -9,6 +9,9 @@ namespace NameyMcNamespace
 
 	class Blah			// [[ should stop here, but not [m
 	{
+		string a="var", b=c->var, d = "var";  // gD shouldn't stop here
+		string a="var", b=c.var, var = "var"; // gD should fine this one
+		int arg = 0;		// gd on arg below shouldn't go back this far
 		float _property;
 		float property	// [[ should stop here, but not [m
 		{
@@ -30,8 +33,30 @@ namespace NameyMcNamespace
 			blah;
 		}
 
-		new void Func1()		// Stop here, allow "new" keyword
+		void FuncWithNoGapBeforeNextFunc()
 		{
+			// The lack of a blank line between this function and the next
+			// would confuse vim's default gd behaviour.
+			int var = 0;		// gd on var below shouldn't stop here
+		}
+		new void Func1(int arg)		// Stop here, allow "new" keyword
+		{
+			// gd on var below should not go here
+			/* Nor should gd on var stop here
+			 * Nor should gd on var stop here
+			 */
+			{
+				int var = 0;	// gd on var below shouldn't stop here
+			}
+			string str = "var";	/* gd on var shouldn't stop here either */
+			int i = blah.var;	// gd on var shouldn't stop here either
+			int i = blah->var;	// gd on var shouldn't stop here either
+			int i = blah::var;	// gd on var shouldn't stop here either
+			int v = b.var, var = b.var;	// YES, gd on var SHOULD FIND THIS ONE!
+			int var2 = var;		// Another distraction, gd shouldn't stop here
+			var;				// Place cursor on var and hit "gd"
+			arg;				// gd on arg here should go back to Func1()
+
 			if (ok &&
 				IsOK())			// Don't stop here
 			{
@@ -54,6 +79,11 @@ namespace NameyMcNamespace
 			} else {
 				blah;
 			}
+
+			do					// Don't stop here
+			{
+				blah;
+			} while (blah);
 
 			// Don't stop for lambda functions
 			lambda(() =>

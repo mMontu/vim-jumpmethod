@@ -30,6 +30,9 @@ function! jumpmethod#plug#setup_plug()
     onoremap <Plug>(jumpmethod-curly-toend-fwd)     :<c-u>call jumpmethod#jump('}', 'W',  'o', 0)<cr>
     onoremap <Plug>(jumpmethod-curly-toend-back)    :<c-u>call jumpmethod#jump('}', 'Wb', 'o', 0)<cr>
 
+    noremap <Plug>(jumpmethod-gd)  :<c-u>call jumpmethod#gd(0)<cr>
+    noremap <Plug>(jumpmethod-gD)  :<c-u>call jumpmethod#gd(1)<cr>
+
     let s:setup_plug = 1
 endf
 
@@ -64,4 +67,7 @@ function! jumpmethod#plug#map_to_plug_in_buffer()
     omap <buffer> [m <Plug>(jumpmethod-curly-tostart-back)
     omap <buffer> ]M <Plug>(jumpmethod-curly-toend-fwd)
     omap <buffer> [M <Plug>(jumpmethod-curly-toend-back)
+
+    map <buffer> gd <Plug>(jumpmethod-gd)
+    map <buffer> gD <Plug>(jumpmethod-gD)
 endf
