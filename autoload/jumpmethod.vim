@@ -220,6 +220,13 @@ function! jumpmethod#gd(fromStartOfFile)
   let origPos = getcurpos()
   let word = expand('<cword>')
   if (word == "")
+    " Don't use echoerr as it will scroll the screen annoyingly
+    echohl ErrorMsg
+    echo 'No identifier under cursor'
+    echohl None
+
+    " Beep
+    exec "normal! \<Esc>"
     return
   endif
 
@@ -280,10 +287,19 @@ function! jumpmethod#gd(fromStartOfFile)
 
       call setpos('.', foundPos)
 
+      " Success
       return
     endif
   endwhile
 
   " Not found, go back to where we started.
   call winrestview(winSave)
+
+  " Don't use echoerr as it will scroll the screen annoyingly
+  echohl ErrorMsg
+  echo 'No declaration found'
+  echohl None
+
+  " Beep
+  exec "normal! \<Esc>"
 endfunction
