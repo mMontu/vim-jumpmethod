@@ -37,8 +37,8 @@ function! jumpmethod#SkipBackOverComments(current_line)
       let text = getline(current_line)
     endif
 
-    " Skip back if start of C or C++ style comments and blank lines
-    if (text =~ '^\s*\(//\|/\*\)' || text =~ '^\s*$')
+    " Skip back if start of C or C++ style comments and blank or # lines
+    if (text =~ '^\s*\(//\|/\*\)' || text =~ '^\s*$' || text =~ '^\s*#')
       let current_line = current_line - 1
     else
       " Not a comment

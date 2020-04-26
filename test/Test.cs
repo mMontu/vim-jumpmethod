@@ -164,6 +164,15 @@ namespace NameyMcNamespace
 		 */
 		{
 			cmd;
+
+#ifdef BLAH
+			if (test &&
+				test2)
+#endif
+			{	// Avoid landing here
+				cmd;
+			}
+			cmd;
 		}
 
 		void Func5
