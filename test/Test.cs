@@ -33,6 +33,13 @@ namespace NameyMcNamespace
 			blah;
 		}
 
+		bool FuncWithCommentsInArgs(const char *str, int numFrames,
+				  float val /* = 0.0f */, Type blah /* = 0 */,
+				  float val /* = 0.0f */, int quality /* = -1 */)
+		{ // Land here from far below should scroll up to show Func name
+			cmd;
+		}
+
 		void FuncWithNoGapBeforeNextFunc()
 		{
 			// The lack of a blank line between this function and the next
@@ -197,6 +204,15 @@ namespace NameyMcNamespace
 		 */
 		{
 			cmd;
+
+			// Leave lines here so we have room to scroll down,
+			// to test that [[ will scroll up to show function heading
+			//
+			//
+			//
+			//
+			//
+			// That should be enough.
 		}
 	}
 }

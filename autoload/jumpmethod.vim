@@ -19,7 +19,24 @@ endfunction
 
 " Strip trailing comment
 function! jumpmethod#StripTrailingComment(text)
-  return substitute(a:text, '\(//\|/\*\).*', '', '')
+  let text = a:text
+  let pos = match(text, '/\*.*\*/')
+  while (pos >= 0)
+    let endPos = matchend(text, '\*/', pos + 2)
+
+    " Remove the comment in such a way as to leave the string the same length
+    let newText = strpart(text, 0, pos)
+    let i = pos
+    while (i < endPos)
+      let newText = newText . ' '
+      let i = i + 1
+    endwhile
+    let text = newText . strpart(text, endPos)
+
+    " See if there's another comment to remove
+    let pos = match(text, '/\*.*\*/', endPos)
+  endwhile
+  return substitute(text, '\(//\|/\*\).*', '', '')
 endfunction
 
 " Skip back over comment lines and blank lines
@@ -32,7 +49,7 @@ function! jumpmethod#SkipBackOverComments(current_line)
     if (pos >= 0)
       " End of a C-style comment, jump to other end
       call cursor(current_line, pos + 1)
-      keepjumps normal! %
+      keepjumps normal %
       let current_line = line('.')
       let text = getline(current_line)
     endif
@@ -98,7 +115,7 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
 
     if char == '}'
       " jump to the opening one to analyze the definition
-      keepjumps normal! %
+      keepjumps normal %
     endif
 
     " Remember where we are, with cursor on the '{'
@@ -133,7 +150,7 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
       " Found a closing ')', but function definition may span multiple lines,
       " so find matching '(' at start.
       call cursor(current_line, pos + 1)
-      keepjumps normal! %
+      keepjumps normal %
       let current_line = line('.')
 
       let text = getline(current_line)
@@ -193,7 +210,7 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
         call setpos('.', openingBracePos)
         if char == '}'
           " we need to go back to the closing bracket
-          keepjumps normal! %
+          keepjumps normal %
         endif
       endif
 
@@ -205,7 +222,7 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
     call setpos('.', openingBracePos)
     if char == '}'
       " Go back to the closing bracket
-      keepjumps normal! %
+      keepjumps normal %
     endif
   endwhile
 
