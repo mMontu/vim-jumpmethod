@@ -17,6 +17,20 @@ function! jumpmethod#PosCmp(posA, posB)
   return 0                          " Same position
 endfunction
 
+" Jump to the matching bracket.  Same as "%" but makes sure to keep the
+" last-cursor mark.
+function! jumpmethod#JumpToMatchingBracket()
+  " Use "normal" rather than "normal!" to make use of improved mappings for "%".
+  " keepjumps does all we need to retain jump marks, unless "%" has been mapped
+  " to a better version, in which case it may still lose our marks, so
+  " explicitly store and recall them.  We still use keepjumps though as it also
+  " retains the whole old-jump list (accessed using Ctrl+O & Ctrl+I).
+  " I don't know how to retain the whole jump list if "%" has been mapped.
+  let lastCursorPos = getpos("''")
+  keepjumps normal %
+  call setpos("''", lastCursorPos)
+endfunction
+
 " Strip trailing comment
 function! jumpmethod#StripTrailingComment(text)
   let text = a:text
@@ -49,7 +63,7 @@ function! jumpmethod#SkipBackOverComments(current_line)
     if (pos >= 0)
       " End of a C-style comment, jump to other end
       call cursor(current_line, pos + 1)
-      keepjumps normal %
+      call jumpmethod#JumpToMatchingBracket()
       let current_line = line('.')
       let text = getline(current_line)
     endif
@@ -115,7 +129,7 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
 
     if char == '}'
       " jump to the opening one to analyze the definition
-      keepjumps normal %
+      call jumpmethod#JumpToMatchingBracket()
     endif
 
     " Remember where we are, with cursor on the '{'
@@ -150,7 +164,7 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
       " Found a closing ')', but function definition may span multiple lines,
       " so find matching '(' at start.
       call cursor(current_line, pos + 1)
-      keepjumps normal %
+      call jumpmethod#JumpToMatchingBracket()
       let current_line = line('.')
 
       let text = getline(current_line)
@@ -209,8 +223,8 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
       else
         call setpos('.', openingBracePos)
         if char == '}'
-          " we need to go back to the closing bracket
-          keepjumps normal %
+          " We need to go back to the closing bracket
+          call jumpmethod#JumpToMatchingBracket()
         endif
       endif
 
@@ -222,7 +236,7 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
     call setpos('.', openingBracePos)
     if char == '}'
       " Go back to the closing bracket
-      keepjumps normal %
+      call jumpmethod#JumpToMatchingBracket()
     endif
   endwhile
 
