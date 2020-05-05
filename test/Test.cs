@@ -129,6 +129,21 @@ namespace NameyMcNamespace
 				"Blah",
 			};
 
+			switch (blah)
+			{
+				case A:
+					{				// Don't stop here
+						cmd;
+						cmd;
+					}
+					return;
+				default:
+					{				// Don't stop here
+						cmd;
+					}
+					break;
+			}
+
 			using (a =
 				   blah())			// Don't stop here
 			{
