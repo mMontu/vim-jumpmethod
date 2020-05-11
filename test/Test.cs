@@ -28,6 +28,14 @@ namespace NameyMcNamespace
 		// Only stop once on line below
 		float property2 { get { return 1.0f; } set { blah; } }
 
+		Dictionary<int, int> map = new Dictionary<int, int>()
+		{
+			{1, 2},		// Don't stop here
+			{3, 4},		// Don't stop here
+			{5, 6},		// Don't stop here
+			{7, 8}		// Don't stop here
+		};
+
 		float this[int index]	// Stop here
 		{
 			blah;
@@ -131,7 +139,7 @@ namespace NameyMcNamespace
 
 			switch (blah)
 			{
-				case A:
+				case A:				// Don't let this comment get in the way
 					{				// Don't stop here
 						cmd;
 						cmd;
