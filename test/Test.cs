@@ -38,7 +38,11 @@ namespace NameyMcNamespace
 
 		float this[int index]	// Stop here
 		{
-			blah;
+			string[] names =
+					new string[] { "Alice", "Bob" };	// Don't stop here
+
+			string str = "blah { blah";	// Don't stop here
+			string str = '{';			// Don't stop here
 		}
 
 		bool FuncWithCommentsInArgs(const char *str, int numFrames,
