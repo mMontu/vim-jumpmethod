@@ -106,12 +106,6 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
   normal! m'
   let original_cursor = getcurpos()
 
-  if a:mode == 'v'
-    normal! gv
-  elseif a:mode == 'o'
-    normal! v
-  endif
-
   " Passing 'f' rather than '{' or '}' makes it jump to the function name
   " rather than the brace.  Handy when searching backwards and you can't see
   " what function you landed on because the '{' is at the top of the screen.
@@ -231,6 +225,16 @@ function! jumpmethod#jump(char, flags, mode, includeClassesAndProperties)
       endif
 
       if (found)
+        if a:mode == 'v' || a:mode == 'o'
+          let final_cursor = getcurpos()
+          call setpos('.', original_cursor)
+          if a:mode == 'v'
+            normal! gv
+          else
+            normal! v
+          endif
+          call setpos('.', final_cursor)
+        endif
         return
       endif
     endif
