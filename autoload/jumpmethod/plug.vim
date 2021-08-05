@@ -71,3 +71,9 @@ function! jumpmethod#plug#map_to_plug_in_buffer()
     map <buffer> gd <Plug>(jumpmethod-gd)
     map <buffer> gD <Plug>(jumpmethod-gD)
 endf
+
+
+" Options 
+if !exists("g:jumpmethod_default_percent")
+   let g:jumpmethod_default_percent = 0
+endif

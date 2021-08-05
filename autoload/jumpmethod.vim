@@ -20,15 +20,19 @@ endfunction
 " Jump to the matching bracket.  Same as "%" but makes sure to keep the
 " last-cursor mark.
 function! jumpmethod#JumpToMatchingBracket()
-  " Use "normal" rather than "normal!" to make use of improved mappings for "%".
-  " keepjumps does all we need to retain jump marks, unless "%" has been mapped
-  " to a better version, in which case it may still lose our marks, so
-  " explicitly store and recall them.  We still use keepjumps though as it also
-  " retains the whole old-jump list (accessed using Ctrl+O & Ctrl+I).
-  " I don't know how to retain the whole jump list if "%" has been mapped.
-  let lastCursorPos = getpos("''")
-  keepjumps normal %
-  call setpos("''", lastCursorPos)
+  if !g:jumpmethod_default_percent
+    " Use "normal" rather than "normal!" to make use of improved mappings for "%".
+    " keepjumps does all we need to retain jump marks, unless "%" has been mapped
+    " to a better version, in which case it may still lose our marks, so
+    " explicitly store and recall them.  We still use keepjumps though as it also
+    " retains the whole old-jump list (accessed using Ctrl+O & Ctrl+I).
+    " I don't know how to retain the whole jump list if "%" has been mapped.
+    let lastCursorPos = getpos("''")
+    keepjumps normal %
+    call setpos("''", lastCursorPos)
+  else
+    keepjumps normal! %
+  endif
 endfunction
 
 " Strip trailing comment
